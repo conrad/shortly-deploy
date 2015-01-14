@@ -4,7 +4,7 @@ var path = require('path');
 var db = Bookshelf.initialize({
   client: 'sqlite3',
   connection: {
-    host: '127.0.0.1',
+    host: process.env.HOST,
     user: 'your_database_user',
     password: 'password',
     database: 'shortlydb',
