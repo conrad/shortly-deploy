@@ -6,20 +6,9 @@ module.exports = function(grunt) {
       build: {
         src: [
           'public/client/*.js',
-          'public/lib/handlebars.js',
-          'public/lib/backbone.js',
-          'public/lib/underscore.js',
-          'public/lib/jquery.js',
-          // 'public/*.css',
-          'server.js',
-          'server-config.js',
-          'lib/*.js',
-          //'db/shortly.sqlite',
-          'app/models/*.js',
-          'app/collections/*.js',
-          'app/config.js'
+          'public/lib/*.js'
         ],
-        dest: 'build/production.js'
+        dest: 'public/dist/production.js'
       }
     },
 
@@ -40,8 +29,8 @@ module.exports = function(grunt) {
 
     uglify: {
       build: {
-        src: 'build/production.js',
-        dest: 'build/production.min.js'
+        src: 'public/dist/production.js',
+        dest: 'public/dist/production.min.js'
       }
     },
 
@@ -60,6 +49,15 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'public',
+          src: 'style.css',
+          dest: 'public/dist',
+          ext: '.min.css'
+        }]
+      }
     },
 
     watch: {
@@ -128,7 +126,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
-    'concat', 'uglify'
+    'concat', 'uglify', 'cssmin'
   ]);
 
 
