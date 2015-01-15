@@ -6,8 +6,7 @@ module.exports = function(grunt) {
     concat: {
       build: {
         src: [
-          'public/client/*.js',
-          // 'public/lib/*.js'
+          'public/client/*.js'
         ],
         dest: 'public/dist/production.js'
       }
@@ -83,9 +82,56 @@ module.exports = function(grunt) {
       }
     },
 
+    // git add -A
+    gitadd: {
+      task: {
+        options: {
+          force: true,
+          all: true,
+          cwd: '/Users/student/Desktop/shortly-deploy/'
+        }
+      }
+    },
+
+    // git commit -m "Repository updated on <current date time>"
+    gitcommit: {
+      task: {
+        options: {
+          message: 'Repository updated on ' + grunt.template.today(),
+          allowEmpty: true,
+          cwd: '/Users/student/Desktop/shortly-deploy/'
+        }
+      }
+    },
+
+    // git push azure master
+    gitpush: {
+      task: {
+        options: {
+          remote: 'azure',
+          branch: 'master',
+          cwd: '/Users/student/Desktop/shortly-deploy/'
+        }
+      }
+    },
+
+    // git push origin master
+    gitpushOrigin: {
+      task: {
+        options: {
+          remote: 'origin',
+          branch: 'master',
+          cwd: '~/Desktop/shortly-deploy'
+        }
+      }
+    },
+
     shell: {
       prodServer: {
-        command: "git add .; git commit -m ''; git push azure master "
+        // command:
+        // add: "git add .",
+        // commit: "git commit -m ''",
+        // push: "git push azure master"
       }
     },
   });
@@ -98,6 +144,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-git');
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -117,22 +164,30 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
-    'mochaTest'
+    'mochaTest', 'jshint'
   ]);
 
   grunt.registerTask('build', [
+    'jshint', 'concat', 'uglify', 'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
       // add your production server task here
-      // shell:prodServer
+      // grunt.task.run(['shell:prodServer:add', 'shell:prodServer:commit', 'shell:prodServer:push']);
+      grunt.task.run(['git']);
+      console.log('prod');
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
   });
 
-  grunt.registerTask('deploy',
-    ['jshint', 'mochaTest', 'concat', 'uglify', 'cssmin', 'shell:prodServer'
+  grunt.registerTask('git', [
+    'gitadd', 'gitcommit', 'gitpush'
+  ]);
+
+  grunt.registerTask('deploy', [
+    'jshint', 'concat', 'uglify', 'cssmin'
   ]);
 };
+// Random comments so that we have somehting to add
