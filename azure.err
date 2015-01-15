@@ -1,0 +1,28 @@
+Wed Jan 14 2015 15:36:28 GMT-0800 (PST):
+{ [Error: The server encountered an internal error. Please retry the request.]
+  stack: [Getter/Setter],
+  code: 'InternalError',
+  statusCode: 500,
+  requestId: 'f5a4249c92386573a253dd48c3d14ff8',
+  __frame: 
+   { name: '__1',
+     line: 35,
+     file: '/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/lib/commands/asm/site.scale._js',
+     prev: undefined,
+     active: false,
+     offset: 25,
+     col: 6 },
+  rawStack: [Getter] }
+Error: The server encountered an internal error. Please retry the request.
+    at Function.ServiceClient._normalizeError (/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/node_modules/azure-common/lib/services/serviceclient.js:809:23)
+    at /Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/node_modules/azure-common/lib/services/filters/errorhandlingfilter.js:44:29
+    at Request._callback (/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/node_modules/azure-common/lib/http/request-pipeline.js:109:14)
+    at Request.self.callback (/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/node_modules/request/request.js:129:22)
+    at Request.EventEmitter.emit (events.js:98:17)
+    at Request.<anonymous> (/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/node_modules/request/request.js:873:14)
+    at Request.EventEmitter.emit (events.js:117:20)
+    at IncomingMessage.<anonymous> (/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/node_modules/request/request.js:824:12)
+    at IncomingMessage.EventEmitter.emit (events.js:117:20)
+    at _stream_readable.js:920:16
+    at __1 (/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/lib/commands/asm/site.scale._js:60:6)
+

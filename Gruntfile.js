@@ -3,6 +3,24 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      build: {
+        src: [
+          'public/client/*.js',
+          'public/lib/handlebars.js',
+          'public/lib/backbone.js',
+          'public/lib/underscore.js',
+          'public/lib/jquery.js',
+          // 'public/*.css',
+          'server.js',
+          'server-config.js',
+          'lib/*.js',
+          //'db/shortly.sqlite',
+          'app/models/*.js',
+          'app/collections/*.js',
+          'app/config.js'
+        ],
+        dest: 'build/production.js'
+      }
     },
 
     mochaTest: {
@@ -21,6 +39,10 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      build: {
+        src: 'build/production.js',
+        dest: 'build/production.min.js'
+      }
     },
 
     jshint: {
@@ -106,6 +128,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
+    'concat', 'uglify'
   ]);
 
 
