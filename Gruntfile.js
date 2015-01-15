@@ -5,8 +5,8 @@ module.exports = function(grunt) {
     concat: {
       build: {
         src: [
-          'public/client/*.js' //,
-          // 'public/lib/*.js'
+          'public/client/*.js',
+          'public/lib/*.js'
         ],
         dest: 'public/dist/production.js'
       }
@@ -84,7 +84,7 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
-        // command: 'grunt deploy'    // deploy
+        command: "git add .; git commit -m ''; git push azure master "
       }
     },
   });
@@ -132,6 +132,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('deploy',
-    ['jshint', 'mochaTest', 'concat', 'uglify', 'cssmin'
+    ['jshint', 'mochaTest', 'concat', 'uglify', 'cssmin', 'shell:prodServer'
   ]);
 };
