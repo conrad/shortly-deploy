@@ -3,8 +3,8 @@ var crypto = require('crypto');
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 
-mongoose.connect('mongodb://localhost/test');
-
+// mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://MongoLab-c:jZ.jYUN0mi.gsmFTJvaZCmexGSxFla8TN0WuZG.3MIs-@ds052827.mongolab.com:52827/MongoLab-c');
 // var db = mongoose.connection;
 // db.on('error', console.error.bind(console, 'connection error:'));
 // db.once('open', function (callback) {
