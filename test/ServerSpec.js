@@ -1,17 +1,21 @@
+require('../app/mongoose-server.js');
 var request = require('supertest');
 var express = require('express');
 var expect = require('chai').expect;
 var app = require('../server-config.js');
 
 var db = require('../app/config');
-var User = require('../app/models/user');
-var Link = require('../app/models/link');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
+// require('../app/models/user');
+var Link = mongoose.model('Link');
+// require('../app/models/link');
 
 /////////////////////////////////////////////////////
 // NOTE: these tests are designed for mongo!
 /////////////////////////////////////////////////////
 
-xdescribe('', function() {
+describe('', function() {
 
   beforeEach(function(done) {
     // Log out currently signed in user
@@ -80,7 +84,7 @@ xdescribe('', function() {
             Link.findOne({'url' : 'http://www.roflzoo.com/'})
               .exec(function(err,link){
                 if(err) console.log(err);
-                expect(link.title).to.equal('Rofl Zoo - Daily funny animal pictures');
+                expect(link.title).to.equal('Funny animal pictures, funny animals, funniest dogs');
               });
           })
           .end(done);
@@ -93,7 +97,7 @@ xdescribe('', function() {
       beforeEach(function(done) {
         link = new Link({
           url: 'http://www.roflzoo.com/',
-          title: 'Rofl Zoo - Daily funny animal pictures',
+          title: 'Funny animal pictures, funny animals, funniest dogs',
           base_url: 'http://127.0.0.1:4568',
           visits: 0
         })
