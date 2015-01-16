@@ -8,12 +8,13 @@ mongoose.connect('mongodb://localhost/test');
   // yay!
 var linkSchema = mongoose.Schema({
   url: String,
+  title: String,
   base_url: String,
   code: String,
-  title: String,
   visits: Number
 });
 
+// this makes the link collection accessible in other files
 mongoose.model('Link', linkSchema);
 
 var userSchema = mongoose.Schema({
@@ -21,7 +22,7 @@ var userSchema = mongoose.Schema({
   password: String
 });
 
-var User = mongoose.model('User', userSchema);
+mongoose.model('User', userSchema);
 // });
 
 
